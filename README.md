@@ -33,11 +33,13 @@ The code is to be considered correct only according to the **tests** that the pr
 
 [TODO]
 
-### Dependencies
+### Environment requirements
 
-Dependencies that one has to provide to be able to run the utility are as follows:
+The environment of one has to fulfil at least the following requirements so that one be able to run the utility:
 
-- [TODO]
+1. The shell is [Bash](https://www.gnu.org/software/bash/) and the path to its executable is `/bin/bash`.
+2. The following standard Linux shell utilities are available through the `PATH` environment variable:
+    - `echo`
 
 ### Examples
 
