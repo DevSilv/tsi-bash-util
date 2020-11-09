@@ -6,7 +6,6 @@
 2. Write unit tests for this code.
 3. Run all unit tests.
 4. If all unit tests pass, commit.
-5. Push.
 
 ## Code conventions
 
