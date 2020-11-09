@@ -47,7 +47,7 @@ The environment of one has to fulfil at least the following requirements so that
 
 ## Exit statuses
 
-[TODO]
+- `1` — General error exit status
 
 ## Environments, tools and technologies used
 
