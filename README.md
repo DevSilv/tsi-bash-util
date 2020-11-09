@@ -1,4 +1,4 @@
-# tsi-bash-util (TreeStructInfo Bash utility)
+# tsi-bash-util (TreeStructInfo Bash Utility)
 
 tsi-bash-util is a utility that allows the user to programmatically use the [TreeStructInfo file format](https://tsinfo.4programmers.net/pl/format/2.0.htm).
 
