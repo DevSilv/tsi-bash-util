@@ -4,8 +4,10 @@
 
 1. Write some code.
 2. Write unit tests for this code.
-3. Run all unit tests.
-4. If all unit tests pass, commit.
+3. Run unit tests for the whole application.
+4. If all unit tests pass, write integration tests for this code.
+5. Run integration tests for the whole application.
+6. If all integration tests pass, commit.
 
 ## Code conventions
 
