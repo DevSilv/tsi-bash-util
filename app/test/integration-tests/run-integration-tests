@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -o nounset
+
+source "$(dirname ${BASH_SOURCE})/../test-utils.source" \
+    || exit "1"
+
+command -v "echo" > /dev/null \
+    || exit "1"
+
+testing_exit_status="0"
+
+echo "Started integration testing..."
+
+for test_cases_file_path in "$(dirname ${BASH_SOURCE})/integration-test-cases/"*
+do
+    echo "Testing ${test_cases_file_path}"
+    
+    source "${test_cases_file_path}"
+    testing_exit_status="${?}"
+
+    if [[ "${testing_exit_status}" != "0" ]]
+    then exit "${testing_exit_status}"
+    fi
+done
+
+echo "Integration testing done: all tests passed"

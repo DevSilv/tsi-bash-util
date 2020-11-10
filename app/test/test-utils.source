@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function handle_test_exit_status {
+    [[ "${#}" != "4" ]] \
+        && exit "1"
+    
+    expected="${1}"
+    received="${2}"
+    test_num="${3}"
+    script_name="${4}"
+
+    if [[ "${expected}" != "${received}" ]]
+    then
+        echo "Script: ${script_name}, test ${test_num}, expected: '${expected}', received: '${received}'"
+        exit "2"
+    fi
+}

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -o nounset
+
+source "$(dirname ${BASH_SOURCE})/../test-utils.source" \
+    || exit "1"
+
+source "$(dirname ${BASH_SOURCE})/../../scripts/errors.source" \
+    || exit "1"
+
+command -v "echo" > /dev/null \
+    || exit "1"
+
+testing_exit_status="0"
+
+echo "Started unit testing..."
+
+for test_cases_file_path in "$(dirname ${BASH_SOURCE})/unit-test-cases/"*
+do
+    echo "Testing ${test_cases_file_path}..."
+    
+    source "${test_cases_file_path}"
+    testing_exit_status="${?}"
+
+    if [[ "${testing_exit_status}" != "0" ]]
+    then exit "${testing_exit_status}"
+    fi
+done
+
+echo "Unit testing done: all tests passed"

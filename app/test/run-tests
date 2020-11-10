@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -o nounset
+
+command -v "echo" > /dev/null \
+    || exit "1"
+
+[[ "${#}" != "0" ]] \
+    && exit "1"
+
+testing_exit_status="0"
+
+echo "Started testing..."
+
+"$(dirname ${BASH_SOURCE})/unit-tests/run-unit-tests" \
+    && "$(dirname ${BASH_SOURCE})/integration-tests/run-integration-tests"
+testing_exit_status="${?}"
+
+case "${testing_exit_status}" in
+    "0")
+        echo "Testing done: all tests passed"
+        exit "0"
+        ;;
+    "1")
+        echo "Testing error"
+        exit "1"
+        ;;
+    "2")
+        echo "Testing interrupted: a test failed"
+        exit "2"
+        ;;
+    *)
+        echo "Error"
+        exit "${testing_exit_status}"
+        ;;
+esac

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function handle_no_param_err {
+    echo "Error: no parameter provided"
+    exit "${no_param_err_exit_status}"
+}
+
+function handle_too_many_params_err {
+    echo "Error: too many parameters"
+    exit "${too_many_params_err_exit_status}"
+}
+
+function handle_no_command_err {
+    echo "Error: no command provided"
+    exit "${no_command_err_exit_status}"
+}

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+source "$(dirname ${BASH_SOURCE})/config.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/errors.source" \
+    || exit "1"
+
+command -v "echo" > /dev/null \
+    || exit "1"
+
+[[ "${#}" == "0" ]] \
+    && handle_no_param_err
+
+while [[ "${#}" -gt "0" ]]
+do
+    case "${1}" in
+        "--verbose")
+            [[ "${#}" == "1" ]] \
+                && handle_no_command_err
+            echo "Not implemented"
+            # verbose_mode="yes"
+            shift "1"
+            ;;
+        "--version")
+            [[ "${#}" -gt "1" ]] \
+                && handle_too_many_params_err
+            echo "Not implemented"
+            # display_app_version
+            shift "1"
+            ;;
+        *)
+            echo "Not implemented"
+            # handle_command "${@}"
+            shift "${#}"
+            ;;
+    esac
+done

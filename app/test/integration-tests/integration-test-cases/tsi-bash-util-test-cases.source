@@ -1,0 +1,32 @@
+#!/bin/bash
+
+source "$(dirname ${BASH_SOURCE})/../../../scripts/config.source" \
+    || exit "1"
+
+script_name="$(basename ${BASH_SOURCE})"
+cur_test_num="0"
+tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../scripts/tsi-bash-util"
+
+(( ++cur_test_num ))
+("${tested_file_path}" > "/dev/null")
+handle_test_exit_status \
+    "10" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "--verbose" > "/dev/null")
+handle_test_exit_status \
+    "12" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "--version" "" > "/dev/null")
+handle_test_exit_status \
+    "11" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+no_param_err_exit_status="10"
+too_many_params_err_exit_status="11"
+no_command_err_exit_status="12"
