@@ -17,13 +17,6 @@ command -v "echo" > /dev/null \
 while [[ "${#}" -gt "0" ]]
 do
     case "${1}" in
-        "--verbose")
-            [[ "${#}" == "1" ]] \
-                && handle_no_command_err
-            echo "Not implemented"
-            # verbose_mode="yes"
-            shift "1"
-            ;;
         "--version")
             [[ "${#}" -gt "1" ]] \
                 && handle_too_many_params_err
