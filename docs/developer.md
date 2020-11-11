@@ -4,7 +4,15 @@
 
 ### Creating
 
-- Creating the tree of a document:
+- Creating the document:
+
+    ```
+    tsi-bash-util create doc "<main tree>" [...branches]
+    ```
+
+    where `...branches` is a list of arguments (in the same sense as in the Bash manual); each argument represents a branch, and each branch represents the definition of a referenced element.
+
+- Creating the main tree of a document:
 
     ```
     tsi-bash-util create tree [--name "<tree's name>"] ["<tree's content>"]
@@ -13,14 +21,17 @@
 - Creating an attribute:
 
     ```
-    tsi-bash-util create attribute "<attribute's name>" ["<attribute's value>"]
+    tsi-bash-util create attr "<attribute's name>" ["<attribute's value>"]
     ```
 
 - Creating a referenced attribute:
 
     ```
-    tsi-bash-util create attribute declaration "<attribute's name>"
-    tsi-bash-util create attribute definition "<attribute's name>" ["<attribute's value>"]
+    # Declaration
+    tsi-bash-util create attr dec "<attribute's name>"
+
+    # Definition
+    tsi-bash-util create attr def "<attribute's name>" ["<attribute's value>"]
     ```
 
 - Creating a node:
@@ -32,16 +43,19 @@
 - Creating a referenced node:
 
     ```
-    tsi-bash-util create node declaration "<node's name>"
-    tsi-bash-util create node definition "<node's name>" ["<node's content>"]
+    # Declaration
+    tsi-bash-util create node dec "<node's name>"
+
+    # Definition
+    tsi-bash-util create node def "<node's name>" ["<node's content>"]
     ```
 
 ### Reading
 
-- Get the content of an element in the tree of a document:
+- Get the content of an element within a document:
 
     ```
-    tsi-bash-util get "<element's path>" "<tree>"
+    tsi-bash-util get "<element's path>" "<document>"
     ```
 
 ## Workflow
