@@ -74,3 +74,9 @@
 3. An exit code is to mean either an error or no error.
 4. For a function, returning an empty string is to mean returning "false", and returning the string `yes` is to mean returning "true".
 5. Paths are **not** to be placed within any quotation marks except where required.
+
+## Best practices used
+
+### Error handling
+
+- Throw early, catch late. (Throw at the point that the error firstly occurs, catch at the point that the error may be appropriately handled, as I understood it.)
