@@ -6,7 +6,7 @@ function tsi_node {
         && tsi_handle_invalid_command_args_count_err
     
     local name="${1}"
-    local content="${2}"
+    local content="${2:-}"
 
     [[ "$(tsi_is_identifier ${name})" == "" ]] \
         && tsi_handle_invalid_identifier_err

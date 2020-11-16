@@ -103,6 +103,15 @@ tsi_handle_test_exit_status \
     "${cur_test_num}" \
     "${script_name}"
 
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "test-name" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
 (( ++cur_test_num ))
 ("${tested_file_path}" "create" "node" "test-name" "" > "/dev/null")
 tsi_handle_test_exit_status \
