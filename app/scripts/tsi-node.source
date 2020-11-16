@@ -8,7 +8,7 @@ function tsi_node {
     local name="${1}"
     local content="${2}"
 
-    [[ -z "${name}" ]] \
+    [[ "$(tsi_is_identifier ${name})" == "" ]] \
         && tsi_handle_invalid_identifier_err
     
     echo "node"
