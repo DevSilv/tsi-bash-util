@@ -11,7 +11,7 @@ function tsi_node {
     [[ "$(tsi_is_identifier ${name})" == "" ]] \
         && tsi_handle_invalid_identifier_err
     
-    echo "node"
+    echo "node ${name}"
 
     if [[ ! -z "${content}" ]]
     then echo -e "  ${content/\n/\n  }"
