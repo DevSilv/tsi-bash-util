@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function tsi_node {
+    [[ "${#}" -lt "1" \
+        || "${#}" -gt "2" ]] \
+        && tsi_handle_invalid_command_args_count_err
+    
+    local name="${1}"
+    local content="${2}"
+
+    [[ -z "${name}" ]] \
+        && tsi_handle_invalid_identifier_err
+    
+    echo "node"
+
+    if [[ ! -z "${content}" ]]
+    then echo -e "  ${content/\n/\n  }"
+    fi
+
+    echo "end node"
+}
