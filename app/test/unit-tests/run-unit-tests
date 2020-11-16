@@ -5,7 +5,19 @@ set -o nounset
 source "$(dirname ${BASH_SOURCE})/../test-utils.source" \
     || exit "1"
 
+source "$(dirname ${BASH_SOURCE})/../../scripts/config.source" \
+    || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../scripts/errors.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/handle-command.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/create.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-doc.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-tree.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/utils.source" \
     || exit "1"
 
 command -v "echo" > /dev/null \
