@@ -1,5 +1,12 @@
 #!/bin/bash
 
+invalid_identifier_err_exit_status="2"
+
 no_param_err_exit_status="10"
 too_many_params_err_exit_status="11"
 no_command_err_exit_status="12"
+
+empty_command_err_exit_status="20"
+unrecognized_command_err_exit_status="21"
+
+invalid_command_args_count_err_exit_status="30"

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function tsi_doc {
+    [[ "${#}" == "0" ]] \
+        && handle_invalid_command_args_count_err
+
+    local tree="${1}"
+    shift "1"
+    local branches="${@}"
+    local result="${tree}"
+
+    for b in ${branches}
+    do result="${result}\n\n${b}"
+    done
+
+    echo -e "${result}"
+}

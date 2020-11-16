@@ -7,6 +7,16 @@ source "$(dirname ${BASH_SOURCE})/config.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/errors.source" \
     || exit "1"
+source "$(dirname ${BASH_SOURCE})/handle-command.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/create.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/tsi-doc.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/tsi-tree.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/utils.source" \
+    || exit "1"
 
 command -v "echo" > /dev/null \
     || exit "1"
@@ -25,8 +35,7 @@ do
             shift "1"
             ;;
         *)
-            echo "Not implemented"
-            # handle_command "${@}"
+            handle_command "${@}"
             shift "${#}"
             ;;
     esac

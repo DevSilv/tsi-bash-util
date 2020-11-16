@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function handle_command {
+    [[ "${#}" == "0" ]] \
+        && exit "1"
+
+    local cmd="${1}"
+    shift "1"
+
+    case "${cmd}" in
+        "create")
+            create "${@}"
+            ;;
+        "get")
+            echo "Not implemented"
+            ;;
+        "")
+            handle_empty_command_err
+            ;;
+        *)
+            handle_unrecognized_command_err "${cmd}"
+            ;;
+    esac
+}

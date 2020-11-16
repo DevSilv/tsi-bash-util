@@ -14,3 +14,23 @@ function handle_no_command_err {
     echo "Error: no command provided"
     exit "${no_command_err_exit_status}"
 }
+
+function handle_empty_command_err {
+    echo "Error: empty string provided as a command"
+    exit "${empty_command_err_exit_status}"
+}
+
+function handle_unrecognized_command_err {
+    echo "Error: unrecognized command provided"
+    exit "${unrecognized_command_err_exit_status}"
+}
+
+function handle_invalid_command_args_count_err {
+    echo "Error: invalid command arguments count"
+    exit "${invalid_command_args_count_err_exit_status}"
+}
+
+function handle_invalid_identifier_err {
+    echo "Error: invalid identifier"
+    exit "${invalid_identifier_err_exit_status}"
+}

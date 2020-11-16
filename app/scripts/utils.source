@@ -1,0 +1,5 @@
+#!/bin/bash
+
+function is_identifier {
+    echo "yes"
+}
