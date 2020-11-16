@@ -7,24 +7,24 @@ script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
 
 (( ++cur_test_num ))
-(handle_command > "/dev/null")
-handle_test_exit_status \
+(tsi_handle_command > "/dev/null")
+tsi_handle_test_exit_status \
     "1" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-(handle_command "" > "/dev/null")
-handle_test_exit_status \
+(tsi_handle_command "" > "/dev/null")
+tsi_handle_test_exit_status \
     "${empty_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-(handle_command "abc" > "/dev/null")
-handle_test_exit_status \
+(tsi_handle_command "abc" > "/dev/null")
+tsi_handle_test_exit_status \
     "${unrecognized_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \

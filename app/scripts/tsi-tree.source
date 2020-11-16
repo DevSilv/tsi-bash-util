@@ -2,7 +2,7 @@
 
 function tsi_tree {
     [[ "${#}" -gt "2" ]] \
-        && handle_invalid_command_args_count_err
+        && tsi_handle_invalid_command_args_count_err
     
     local name=""
     local content=""
@@ -12,12 +12,12 @@ function tsi_tree {
             shift "1"
 
             [[ "${#}" != "1" ]] \
-                && handle_invalid_command_args_count_err
+                && tsi_handle_invalid_command_args_count_err
             
             name="${1}"
             
             [[ "$(is_identifier ${name})" == "" ]] \
-                && handle_invalid_identifier_err
+                && tsi_handle_invalid_identifier_err
             
             content="${2:-}"
             ;;

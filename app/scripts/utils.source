@@ -1,5 +1,5 @@
 #!/bin/bash
 
-function is_identifier {
+function tsi_is_identifier {
     echo "yes"
 }

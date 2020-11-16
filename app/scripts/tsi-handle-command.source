@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function handle_command {
+function tsi_handle_command {
     [[ "${#}" == "0" ]] \
         && exit "1"
 
@@ -9,16 +9,16 @@ function handle_command {
 
     case "${cmd}" in
         "create")
-            create "${@}"
+            tsi_create "${@}"
             ;;
         "get")
             echo "Not implemented"
             ;;
         "")
-            handle_empty_command_err
+            tsi_handle_empty_command_err
             ;;
         *)
-            handle_unrecognized_command_err "${cmd}"
+            tsi_handle_unrecognized_command_err "${cmd}"
             ;;
     esac
 }

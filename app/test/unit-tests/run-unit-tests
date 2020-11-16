@@ -9,9 +9,9 @@ source "$(dirname ${BASH_SOURCE})/../../scripts/config.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../scripts/errors.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/handle-command.source" \
+source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-handle-command.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/create.source" \
+source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-create.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-doc.source" \
     || exit "1"

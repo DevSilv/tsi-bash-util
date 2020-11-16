@@ -5,8 +5,8 @@ set -o nounset
 
 source "$(dirname ${BASH_SOURCE})/config.source"
 source "$(dirname ${BASH_SOURCE})/errors.source"
-source "$(dirname ${BASH_SOURCE})/handle-command.source"
-source "$(dirname ${BASH_SOURCE})/create.source"
+source "$(dirname ${BASH_SOURCE})/tsi-handle-command.source"
+source "$(dirname ${BASH_SOURCE})/tsi-create.source"
 source "$(dirname ${BASH_SOURCE})/tsi-doc.source"
 source "$(dirname ${BASH_SOURCE})/tsi-tree.source"
 source "$(dirname ${BASH_SOURCE})/utils.source"
@@ -15,20 +15,20 @@ command -v "echo" > /dev/null \
     || exit "1"
 
 [[ "${#}" == "0" ]] \
-    && handle_no_param_err
+    && tsi_handle_no_param_err
 
 while [[ "${#}" -gt "0" ]]
 do
     case "${1}" in
         "--version")
             [[ "${#}" -gt "1" ]] \
-                && handle_too_many_params_err
+                && tsi_handle_too_many_params_err
             echo "Not implemented"
             # display_app_version
             shift "1"
             ;;
         *)
-            handle_command "${@}"
+            tsi_handle_command "${@}"
             shift "${#}"
             ;;
     esac

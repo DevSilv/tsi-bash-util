@@ -1,8 +1,8 @@
 #!/bin/bash
 
-function create {
+function tsi_create {
     [[ "${#}" == "0" ]] \
-        && handle_invalid_command_args_count_err
+        && tsi_handle_invalid_command_args_count_err
 
     local cmd="${1}"
     shift "1"
@@ -21,10 +21,10 @@ function create {
             echo "Not implemented"
             ;;
         "")
-            handle_empty_command_err
+            tsi_handle_empty_command_err
             ;;
         *)
-            handle_unrecognized_command_err "${cmd}"
+            tsi_handle_unrecognized_command_err "${cmd}"
             ;;
     esac
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function handle_test_exit_status {
+function tsi_handle_test_exit_status {
     [[ "${#}" != "4" ]] \
         && exit "1"
     

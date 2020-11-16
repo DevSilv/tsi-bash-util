@@ -2,7 +2,7 @@
 
 function tsi_doc {
     [[ "${#}" == "0" ]] \
-        && handle_invalid_command_args_count_err
+        && tsi_handle_invalid_command_args_count_err
 
     local tree="${1}"
     shift "1"
