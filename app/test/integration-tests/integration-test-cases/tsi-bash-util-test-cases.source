@@ -10,7 +10,7 @@ tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../scripts/tsi-bash-uti
 (( ++cur_test_num ))
 ("${tested_file_path}" > "/dev/null")
 handle_test_exit_status \
-    "10" \
+    "${no_param_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -18,7 +18,10 @@ handle_test_exit_status \
 (( ++cur_test_num ))
 ("${tested_file_path}" "--version" "" > "/dev/null")
 handle_test_exit_status \
-    "11" \
+    "${too_many_params_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
