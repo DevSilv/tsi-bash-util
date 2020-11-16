@@ -3,20 +3,13 @@
 set -o errexit
 set -o nounset
 
-source "$(dirname ${BASH_SOURCE})/config.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/errors.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/handle-command.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/create.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/tsi-doc.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/tsi-tree.source" \
-    || exit "1"
-source "$(dirname ${BASH_SOURCE})/utils.source" \
-    || exit "1"
+source "$(dirname ${BASH_SOURCE})/config.source"
+source "$(dirname ${BASH_SOURCE})/errors.source"
+source "$(dirname ${BASH_SOURCE})/handle-command.source"
+source "$(dirname ${BASH_SOURCE})/create.source"
+source "$(dirname ${BASH_SOURCE})/tsi-doc.source"
+source "$(dirname ${BASH_SOURCE})/tsi-tree.source"
+source "$(dirname ${BASH_SOURCE})/utils.source"
 
 command -v "echo" > /dev/null \
     || exit "1"
