@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function tsi_display_app_version {
+    [[ "${#}" != "0" ]] \
+        && tsi_handle_too_many_func_args_err
+
+    echo "${app_long_name}, version ${app_version}"
+}
+
 function tsi_is_identifier {
     echo "yes"
 }

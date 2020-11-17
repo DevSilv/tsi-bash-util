@@ -24,8 +24,8 @@ do
         "--version")
             [[ "${#}" -gt "1" ]] \
                 && tsi_handle_too_many_pos_params_err
-            echo "Not implemented"
-            # display_app_version
+
+            tsi_display_app_version
             shift "1"
             ;;
         *)

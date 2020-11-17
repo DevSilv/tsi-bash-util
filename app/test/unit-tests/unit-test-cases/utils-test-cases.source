@@ -1,0 +1,21 @@
+#!/bin/bash
+
+script_name="$(basename ${BASH_SOURCE})"
+cur_test_num="0"
+
+(( ++cur_test_num ))
+(tsi_display_app_version > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_display_app_version "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+

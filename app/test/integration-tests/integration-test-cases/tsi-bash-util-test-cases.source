@@ -16,6 +16,14 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
+("${tested_file_path}" "--version" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
 ("${tested_file_path}" "--version" "" > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_many_pos_params_err_exit_status}" \
