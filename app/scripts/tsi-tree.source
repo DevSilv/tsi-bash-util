@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function tsi_tree {
-    [[ "${#}" -gt "2" ]] \
-        && tsi_handle_invalid_command_args_count_err
+    [[ "${#}" -gt "3" ]] \
+        && tsi_handle_too_many_func_args_err
     
     local name=""
     local content=""
@@ -11,12 +11,12 @@ function tsi_tree {
         "--name")
             shift "1"
 
-            [[ "${#}" != "1" ]] \
-                && tsi_handle_invalid_command_args_count_err
+            [[ "${#}" == "0" ]] \
+                && tsi_handle_too_little_func_args_err
             
             name="${1}"
             
-            [[ "$(is_identifier ${name})" == "" ]] \
+            [[ "$(tsi_is_identifier ${name})" == "" ]] \
                 && tsi_handle_invalid_identifier_err
             
             content="${2:-}"

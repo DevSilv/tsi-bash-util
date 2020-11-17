@@ -6,7 +6,7 @@ cur_test_num="0"
 (( ++cur_test_num ))
 (tsi_create > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${too_little_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"

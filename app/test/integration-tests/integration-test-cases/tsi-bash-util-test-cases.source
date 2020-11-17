@@ -10,7 +10,7 @@ tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../scripts/tsi-bash-uti
 (( ++cur_test_num ))
 ("${tested_file_path}" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${no_param_err_exit_status}" \
+    "${too_little_pos_params_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -18,15 +18,15 @@ tsi_handle_test_exit_status \
 (( ++cur_test_num ))
 ("${tested_file_path}" "--version" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${too_many_params_err_exit_status}" \
+    "${too_many_pos_params_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" > "/dev/null")
+("${tested_file_path}" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${empty_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -35,6 +35,14 @@ tsi_handle_test_exit_status \
 ("${tested_file_path}" "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -58,7 +66,15 @@ tsi_handle_test_exit_status \
 (( ++cur_test_num ))
 ("${tested_file_path}" "create" "doc" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "doc" "tree" "branch1" "branch2" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -72,17 +88,33 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "tree" "--name" > "/dev/null")
+("${tested_file_path}" "create" "tree" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "0" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "tree" "" "" "" > "/dev/null")
+("${tested_file_path}" "create" "tree" "" "" "" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "tree" "--name" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "tree" "--name" "test-name" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -90,7 +122,7 @@ tsi_handle_test_exit_status \
 (( ++cur_test_num ))
 ("${tested_file_path}" "create" "node" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${too_little_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
@@ -98,7 +130,7 @@ tsi_handle_test_exit_status \
 (( ++cur_test_num ))
 ("${tested_file_path}" "create" "node" "" "" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${invalid_command_args_count_err_exit_status}" \
+    "${too_many_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"

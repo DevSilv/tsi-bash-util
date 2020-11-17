@@ -1,18 +1,28 @@
 #!/bin/bash
 
-function tsi_handle_no_param_err {
-    echo "Error: no parameter provided"
-    exit "${no_param_err_exit_status}"
+function tsi_handle_invalid_identifier_err {
+    echo "Error: invalid identifier"
+    exit "${invalid_identifier_err_exit_status}"
 }
 
-function tsi_handle_too_many_params_err {
-    echo "Error: too many parameters"
-    exit "${too_many_params_err_exit_status}"
+function tsi_handle_too_little_pos_params_err {
+    echo "Error: too little positional parameters"
+    exit "${too_little_pos_params_err_exit_status}"
 }
 
-function tsi_handle_no_command_err {
-    echo "Error: no command provided"
-    exit "${no_command_err_exit_status}"
+function tsi_handle_too_many_pos_params_err {
+    echo "Error: too many positional parameters"
+    exit "${too_many_pos_params_err_exit_status}"
+}
+
+function tsi_handle_too_little_func_args_err {
+    echo "Error: too little arguments to the function"
+    exit "${too_little_func_args_err_exit_status}"
+}
+
+function tsi_handle_too_many_func_args_err {
+    echo "Error: too many arguments to the function"
+    exit "${too_many_func_args_err_exit_status}"
 }
 
 function tsi_handle_empty_command_err {
@@ -23,14 +33,4 @@ function tsi_handle_empty_command_err {
 function tsi_handle_unrecognized_command_err {
     echo "Error: unrecognized command provided"
     exit "${unrecognized_command_err_exit_status}"
-}
-
-function tsi_handle_invalid_command_args_count_err {
-    echo "Error: invalid command arguments count"
-    exit "${invalid_command_args_count_err_exit_status}"
-}
-
-function tsi_handle_invalid_identifier_err {
-    echo "Error: invalid identifier"
-    exit "${invalid_identifier_err_exit_status}"
 }

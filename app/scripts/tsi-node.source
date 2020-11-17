@@ -1,9 +1,11 @@
 #!/bin/bash
 
 function tsi_node {
-    [[ "${#}" -lt "1" \
-        || "${#}" -gt "2" ]] \
-        && tsi_handle_invalid_command_args_count_err
+    [[ "${#}" -lt "1" ]] \
+        && tsi_handle_too_little_func_args_err
+
+    [[ "${#}" -gt "2" ]] \
+        && tsi_handle_too_many_func_args_err
     
     local name="${1}"
     local content="${2:-}"

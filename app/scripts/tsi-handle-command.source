@@ -2,7 +2,7 @@
 
 function tsi_handle_command {
     [[ "${#}" == "0" ]] \
-        && exit "1"
+        && tsi_handle_too_little_func_args_err
 
     local cmd="${1}"
     shift "1"

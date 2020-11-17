@@ -7,25 +7,57 @@ script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
 
 (( ++cur_test_num ))
-(tsi_handle_no_param_err > "/dev/null")
+(tsi_handle_invalid_identifier_err > "/dev/null")
 tsi_handle_test_exit_status \
-    "${no_param_err_exit_status}" \
+    "${invalid_identifier_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_too_many_params_err > "/dev/null")
+(tsi_handle_too_little_pos_params_err > "/dev/null")
 tsi_handle_test_exit_status \
-    "${too_many_params_err_exit_status}" \
+    "${too_little_pos_params_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_no_command_err > "/dev/null")
+(tsi_handle_too_many_pos_params_err > "/dev/null")
 tsi_handle_test_exit_status \
-    "${no_command_err_exit_status}" \
+    "${too_many_pos_params_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_handle_too_little_func_args_err > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_handle_too_many_func_args_err > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_handle_empty_command_err > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_handle_unrecognized_command_err > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
