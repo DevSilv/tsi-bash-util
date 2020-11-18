@@ -16,7 +16,7 @@ function tsi_node {
     echo "node ${name}"
 
     if [[ ! -z "${content}" ]]
-    then echo -e "  ${content/\n/\n  }"
+    then echo "  ${content//$'\n'/$'\n'  }"
     fi
 
     echo "end node"
