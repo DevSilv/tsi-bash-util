@@ -46,6 +46,7 @@ The environment of one has to fulfil at least the following requirements so that
 
 ## Exit statuses
 
+- `0` — No error exit status
 - `1` — General error exit status
 
 ## Environments, tools and technologies used
