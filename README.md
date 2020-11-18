@@ -37,10 +37,8 @@ The code is to be considered correct only according to the **tests** that the pr
 
 The environment of one has to fulfil at least the following requirements so that one be able to run the utility:
 
-1. The shell is [Bash](https://www.gnu.org/software/bash/) and the path to its executable is `/bin/bash`.
+1. The shell is [Bash](https://www.gnu.org/software/bash/), version >= 5.0, and the path to its executable is `/bin/bash`.
 2. There is available the `/dev/null` device file.
-3. The following standard Linux shell utilities are available through the `PATH` environment variable:
-    - `echo`
 
 ### Examples
 
