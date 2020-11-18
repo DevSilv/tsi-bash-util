@@ -15,7 +15,7 @@ function tsi_create {
             tsi_tree "${@}"
             ;;
         "attr")
-            echo "Not implemented"
+            tsi_attr "${@}"
             ;;
         "node")
             tsi_node "${@}"

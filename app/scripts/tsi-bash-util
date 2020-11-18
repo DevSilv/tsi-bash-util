@@ -10,6 +10,7 @@ source "$(dirname ${BASH_SOURCE})/tsi-create.source"
 source "$(dirname ${BASH_SOURCE})/tsi-doc.source"
 source "$(dirname ${BASH_SOURCE})/tsi-tree.source"
 source "$(dirname ${BASH_SOURCE})/tsi-node.source"
+source "$(dirname ${BASH_SOURCE})/tsi-attr.source"
 source "$(dirname ${BASH_SOURCE})/utils.source"
 
 command -v "echo" > /dev/null \

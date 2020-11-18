@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function tsi_repeat_str {
+    [[ "${#}" -lt "2" ]] \
+        && tsi_handle_too_little_func_args_err
+
+    [[ "${#}" -gt "2" ]] \
+        && tsi_handle_too_many_func_args_err
+
+    str="${1}"
+    count="${2:-1}"
+    res=""
+
+    for i in $(seq 1 ${count})
+    do res="${res}${str}"
+    done
+
+    echo -n "${res}"
+}
+
 function tsi_display_app_version {
     [[ "${#}" != "0" ]] \
         && tsi_handle_too_many_func_args_err

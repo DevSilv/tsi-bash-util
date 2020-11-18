@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function tsi_attr {
+    [[ "${#}" -lt "1" ]] \
+        && tsi_handle_too_little_func_args_err
+
+    [[ "${#}" -gt "2" ]] \
+        && tsi_handle_too_many_func_args_err
+    
+    local name="${1}"
+    local value="${2:-}"
+
+    [[ "$(tsi_is_identifier ${name})" == "" ]] \
+        && tsi_handle_invalid_identifier_err
+
+    local padding="     $(tsi_repeat_str ' ' ${#name}) "
+    echo -e "attr ${name} \"${value//\\n/\"\\n${padding}\"}\""
+}

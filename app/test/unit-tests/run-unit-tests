@@ -19,6 +19,8 @@ source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-tree.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-node.source" \
     || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-attr.source" \
+    || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../scripts/utils.source" \
     || exit "1"
 
