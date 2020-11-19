@@ -12,5 +12,5 @@ function tsi_attr_ref_dec {
     [[ "$(tsi_is_identifier ${name})" == "" ]] \
         && tsi_handle_invalid_identifier_err
 
-    echo "attr ${name}"
+    echo "ref attr ${name}"
 }
