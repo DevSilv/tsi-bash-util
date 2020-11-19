@@ -1,5 +1,16 @@
 # Developer documentation
 
+## Automated testing
+
+### Environment requirements
+
+The environment of one has to fulfil at least the following requirements so that one be able to run automated tests:
+
+1. The shell is [Bash](https://www.gnu.org/software/bash/), version >= 5.0, and the path to its executable is `/bin/bash`.
+2. There is available the `/dev/null` device file.
+3. The following Linux shell utilities are available through the `PATH` environment variable:
+    - find (GNU findutils), version >= `4.6.0`
+
 ## Design
 
 ### Creating
