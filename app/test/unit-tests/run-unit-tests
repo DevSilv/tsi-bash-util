@@ -19,6 +19,14 @@ source "$(dirname ${BASH_SOURCE})/../../src/create/tsi-tree.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node.source" \
     || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node-std.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node-ref.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node-ref-dec.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node-ref-def.source" \
+    || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr.source" \
     || exit "1"
 source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr-std.source" \

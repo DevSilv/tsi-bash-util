@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function tsi_node_ref_def {
+    [[ "${#}" == "0" ]] \
+        && tsi_handle_too_little_func_args_err
+
+    [[ "${#}" -gt "2" ]] \
+        && tsi_handle_too_many_func_args_err
+
+    local name="${1}"
+    local content="${2:-}"
+
+    [[ "$(tsi_is_identifier ${name})" == "" ]] \
+        && tsi_handle_invalid_identifier_err
+
+    echo "ref node ${name}"
+
+    if [[ ! -z "${content}" ]]
+    then echo "  ${content//$'\n'/$'\n'  }"
+    fi
+
+    echo "end ref node"
+}

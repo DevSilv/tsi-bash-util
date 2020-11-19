@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function tsi_node {
+function tsi_node_ref {
     [[ "${#}" == "0" ]] \
         && tsi_handle_too_little_func_args_err
 
@@ -8,11 +8,11 @@ function tsi_node {
     shift "1"
 
     case "${cmd}" in
-        "std")
-            tsi_node_std "${@}"
+        "dec")
+            tsi_node_ref_dec "${@}"
             ;;
-        "ref")
-            tsi_node_ref "${@}"
+        "def")
+            tsi_node_ref_def "${@}"
             ;;
         "")
             tsi_handle_empty_command_err

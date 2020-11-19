@@ -16,7 +16,103 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "node" "" "" "" > "/dev/null")
+("${tested_file_path}" "create" "node" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "std" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "std" "" "" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+# (( ++cur_test_num ))
+# ("${tested_file_path}" "create" "node" "std" "" > "/dev/null")
+# tsi_handle_test_exit_status \
+#     "${invalid_identifier_err_exit_status}" \
+#     "${?}" \
+#     "${cur_test_num}" \
+#     "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "std" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "std" "abc" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "std" "abc" $'def\nghi' > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "dec" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "dec" "" "" > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_many_func_args_err_exit_status}" \
     "${?}" \
@@ -24,7 +120,7 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "node" "test-name" > "/dev/null")
+("${tested_file_path}" "create" "node" "ref" "dec" "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "0" \
     "${?}" \
@@ -32,7 +128,24 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "node" "test-name" "" > "/dev/null")
+("${tested_file_path}" "create" "node" "ref" "def" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "def" "" "" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "def" "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "0" \
     "${?}" \
@@ -40,7 +153,15 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "create" "node" "test-name" "test-content" > "/dev/null")
+("${tested_file_path}" "create" "node" "ref" "def" "abc" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "node" "ref" "def" "abc" $'def\nghi' > "/dev/null")
 tsi_handle_test_exit_status \
     "0" \
     "${?}" \

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+script_name="$(basename ${BASH_SOURCE})"
+cur_test_num="0"
+
+(( ++cur_test_num ))
+(tsi_node_ref > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_node_ref "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+(tsi_node_ref "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"

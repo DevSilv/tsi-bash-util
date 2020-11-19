@@ -12,25 +12,17 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_node "" "" "" > "/dev/null")
+(tsi_node "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${too_many_func_args_err_exit_status}" \
+    "${empty_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_node "test-name" "" > "/dev/null")
+(tsi_node "abc" > "/dev/null")
 tsi_handle_test_exit_status \
-    "0" \
-    "${?}" \
-    "${cur_test_num}" \
-    "${script_name}"
-
-(( ++cur_test_num ))
-(tsi_node "test-name" "test-content" > "/dev/null")
-tsi_handle_test_exit_status \
-    "0" \
+    "${unrecognized_command_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
