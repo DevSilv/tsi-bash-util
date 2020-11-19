@@ -2,9 +2,6 @@
 
 set -o nounset
 
-command -v "echo" > /dev/null \
-    || exit "1"
-
 [[ "${#}" != "0" ]] \
     && exit "1"
 

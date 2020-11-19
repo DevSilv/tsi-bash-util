@@ -5,14 +5,14 @@ set -o nounset
 source "$(dirname ${BASH_SOURCE})/../test-utils.source" \
     || exit "1"
 
-command -v "echo" > /dev/null \
-    || exit "1"
-
 testing_exit_status="0"
 
 echo "Started integration testing..."
 
-for test_cases_file_path in "$(dirname ${BASH_SOURCE})/integration-test-cases/"*
+test_cases_dir_path="$(dirname ${BASH_SOURCE})/integration-test-cases/"
+test_cases="$(find ${test_cases_dir_path} -type f)"
+
+for test_cases_file_path in ${test_cases}
 do
     echo "Testing ${test_cases_file_path}"
     

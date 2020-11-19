@@ -1,13 +1,10 @@
 #!/bin/bash
 
-source "$(dirname ${BASH_SOURCE})/../../../src/config.source" \
-    || exit "1"
-
 script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
 
 (( ++cur_test_num ))
-(tsi_handle_command > "/dev/null")
+(tsi_attr_ref > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_little_func_args_err_exit_status}" \
     "${?}" \
@@ -15,7 +12,7 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_command "" > "/dev/null")
+(tsi_attr_ref "" > "/dev/null")
 tsi_handle_test_exit_status \
     "${empty_command_err_exit_status}" \
     "${?}" \
@@ -23,7 +20,7 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_command "abc" > "/dev/null")
+(tsi_attr_ref "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "${unrecognized_command_err_exit_status}" \
     "${?}" \

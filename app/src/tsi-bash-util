@@ -6,15 +6,16 @@ set -o nounset
 source "$(dirname ${BASH_SOURCE})/config.source"
 source "$(dirname ${BASH_SOURCE})/errors.source"
 source "$(dirname ${BASH_SOURCE})/tsi-handle-command.source"
-source "$(dirname ${BASH_SOURCE})/tsi-create.source"
-source "$(dirname ${BASH_SOURCE})/tsi-doc.source"
-source "$(dirname ${BASH_SOURCE})/tsi-tree.source"
-source "$(dirname ${BASH_SOURCE})/tsi-node.source"
-source "$(dirname ${BASH_SOURCE})/tsi-attr.source"
+source "$(dirname ${BASH_SOURCE})/create/tsi-create.source"
+source "$(dirname ${BASH_SOURCE})/create/tsi-doc.source"
+source "$(dirname ${BASH_SOURCE})/create/tsi-tree.source"
+source "$(dirname ${BASH_SOURCE})/create/node/tsi-node.source"
+source "$(dirname ${BASH_SOURCE})/create/attr/tsi-attr.source"
+source "$(dirname ${BASH_SOURCE})/create/attr/tsi-attr-std.source"
+source "$(dirname ${BASH_SOURCE})/create/attr/tsi-attr-ref.source"
+source "$(dirname ${BASH_SOURCE})/create/attr/tsi-attr-ref-dec.source"
+source "$(dirname ${BASH_SOURCE})/create/attr/tsi-attr-ref-def.source"
 source "$(dirname ${BASH_SOURCE})/utils.source"
-
-command -v "echo" > /dev/null \
-    || exit "1"
 
 [[ "${#}" == "0" ]] \
     && tsi_handle_too_little_pos_params_err

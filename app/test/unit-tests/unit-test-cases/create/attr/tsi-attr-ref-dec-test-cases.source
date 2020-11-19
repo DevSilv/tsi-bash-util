@@ -4,7 +4,7 @@ script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
 
 (( ++cur_test_num ))
-(tsi_attr > "/dev/null")
+(tsi_attr_ref_dec > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_little_func_args_err_exit_status}" \
     "${?}" \
@@ -12,23 +12,16 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_attr "" "" "" > "/dev/null")
+(tsi_attr_ref_dec "" "" > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_many_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
-(( ++cur_test_num ))
-(tsi_attr "test-name" "" > "/dev/null")
-tsi_handle_test_exit_status \
-    "0" \
-    "${?}" \
-    "${cur_test_num}" \
-    "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_attr "test-name" "test-value-line-1\ntest-value-line-2" > "/dev/null")
+(tsi_attr_ref_dec "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "0" \
     "${?}" \

@@ -1,13 +1,14 @@
 #!/bin/bash
 
-source "$(dirname ${BASH_SOURCE})/../../../src/config.source" \
+source "$(dirname ${BASH_SOURCE})/../../../../src/config.source" \
     || exit "1"
 
 script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
+tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../../src/tsi-bash-util"
 
 (( ++cur_test_num ))
-(tsi_handle_command > "/dev/null")
+("${tested_file_path}" "create" > "/dev/null")
 tsi_handle_test_exit_status \
     "${too_little_func_args_err_exit_status}" \
     "${?}" \
@@ -15,7 +16,7 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_command "" > "/dev/null")
+("${tested_file_path}" "create" "" > "/dev/null")
 tsi_handle_test_exit_status \
     "${empty_command_err_exit_status}" \
     "${?}" \
@@ -23,7 +24,7 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-(tsi_handle_command "abc" > "/dev/null")
+("${tested_file_path}" "create" "abc" > "/dev/null")
 tsi_handle_test_exit_status \
     "${unrecognized_command_err_exit_status}" \
     "${?}" \

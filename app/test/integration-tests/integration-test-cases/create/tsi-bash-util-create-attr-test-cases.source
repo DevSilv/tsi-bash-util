@@ -1,0 +1,160 @@
+#!/bin/bash
+
+source "$(dirname ${BASH_SOURCE})/../../../../src/config.source" \
+    || exit "1"
+
+script_name="$(basename ${BASH_SOURCE})"
+cur_test_num="0"
+tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../../src/tsi-bash-util"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "std" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "std" "" "" "" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "std" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "std" "abc" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "std" "abc" $'def\nghi' > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+    
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${empty_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${unrecognized_command_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "dec" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "dec" "" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "dec" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "def" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "def" "" "" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "${too_many_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "def" "abc" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "def" "abc" "" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "attr" "ref" "def" "abc" $'def\nghi' > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"

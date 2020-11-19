@@ -5,33 +5,41 @@ set -o nounset
 source "$(dirname ${BASH_SOURCE})/../test-utils.source" \
     || exit "1"
 
-source "$(dirname ${BASH_SOURCE})/../../scripts/config.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/config.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/errors.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/errors.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-handle-command.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/tsi-handle-command.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-create.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/tsi-create.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-doc.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/tsi-doc.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-tree.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/tsi-tree.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-node.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/node/tsi-node.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/tsi-attr.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr.source" \
     || exit "1"
-source "$(dirname ${BASH_SOURCE})/../../scripts/utils.source" \
+source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr-std.source" \
     || exit "1"
-
-command -v "echo" > /dev/null \
+source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr-ref.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr-ref-dec.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/create/attr/tsi-attr-ref-def.source" \
+    || exit "1"
+source "$(dirname ${BASH_SOURCE})/../../src/utils.source" \
     || exit "1"
 
 testing_exit_status="0"
 
 echo "Started unit testing..."
 
-for test_cases_file_path in "$(dirname ${BASH_SOURCE})/unit-test-cases/"*
+test_cases_dir_path="$(dirname ${BASH_SOURCE})/unit-test-cases/"
+test_cases="$(find ${test_cases_dir_path} -type f)"
+
+for test_cases_file_path in ${test_cases}
 do
     echo "Testing ${test_cases_file_path}..."
     

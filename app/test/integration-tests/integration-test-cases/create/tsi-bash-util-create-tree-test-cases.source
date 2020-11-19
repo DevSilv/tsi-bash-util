@@ -1,22 +1,14 @@
 #!/bin/bash
 
-source "$(dirname ${BASH_SOURCE})/../../../src/config.source" \
+source "$(dirname ${BASH_SOURCE})/../../../../src/config.source" \
     || exit "1"
 
 script_name="$(basename ${BASH_SOURCE})"
 cur_test_num="0"
-tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../src/tsi-bash-util"
+tested_file_path="$(pwd)/$(dirname ${BASH_SOURCE})/../../../../src/tsi-bash-util"
 
 (( ++cur_test_num ))
-("${tested_file_path}" > "/dev/null")
-tsi_handle_test_exit_status \
-    "${too_little_pos_params_err_exit_status}" \
-    "${?}" \
-    "${cur_test_num}" \
-    "${script_name}"
-
-(( ++cur_test_num ))
-("${tested_file_path}" "--version" > "/dev/null")
+("${tested_file_path}" "create" "tree" > "/dev/null")
 tsi_handle_test_exit_status \
     "0" \
     "${?}" \
@@ -24,25 +16,33 @@ tsi_handle_test_exit_status \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "--version" "" > "/dev/null")
+("${tested_file_path}" "create" "tree" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${too_many_pos_params_err_exit_status}" \
+    "0" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "" > "/dev/null")
+("${tested_file_path}" "create" "tree" "" "" "" "" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${empty_command_err_exit_status}" \
+    "${too_many_func_args_err_exit_status}" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
 
 (( ++cur_test_num ))
-("${tested_file_path}" "abc" > "/dev/null")
+("${tested_file_path}" "create" "tree" "--name" > "/dev/null")
 tsi_handle_test_exit_status \
-    "${unrecognized_command_err_exit_status}" \
+    "${too_little_func_args_err_exit_status}" \
+    "${?}" \
+    "${cur_test_num}" \
+    "${script_name}"
+
+(( ++cur_test_num ))
+("${tested_file_path}" "create" "tree" "--name" "test-name" > "/dev/null")
+tsi_handle_test_exit_status \
+    "0" \
     "${?}" \
     "${cur_test_num}" \
     "${script_name}"
