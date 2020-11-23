@@ -69,6 +69,264 @@ The environment of one has to fulfil at least the following requirements so that
     tsi-bash-util get "<element's path>" "<document>"
     ```
 
+    Drafts of algorithms:
+
+    - Getting a standard attribute (`(doc, std attr's path) -> std attr`):
+
+        ```
+            GET_STD_ATTR (doc, path, cur, res)
+                if greater(cur, length(doc))
+                then return NULL
+                else
+                    if empty(path)
+                    then
+                        if attr_value(doc[cur])
+                        then return GET_STD_ATTR(
+                            doc,
+                            path,
+                            cur,
+                            concat(res, NEWLINE, doc[cur])
+                        )
+                        else return res
+                    else
+                        if equal(size(path), 1)
+                        then
+                            if equal("attr " + path[0], doc[cur])
+                            then return GET_STD_ATTR(
+                                doc,
+                                tail(path),
+                                cur + 1,
+                                concat(res, doc[cur])
+                            )
+                            else return GET_STD_ATTR(doc, path, cur + 1, res)
+                        else
+                            if equal("node " + path[0], doc[cur])
+                            then return GET_STD_ATTR(
+                                doc,
+                                tail(path),
+                                cur + 1,
+                                res
+                            )
+                            else return GET_STD_ATTR(doc, path, cur + 1, res)
+        ```
+
+    - Getting a standard node (`(doc, std node's path) -> std node`):
+
+        ```
+        GET_STD_NODE (doc, path, cur, level, res)
+            if greater(cur, length(doc))
+            then return NULL
+            else
+                if empty(path)
+                then
+                    if node_start(doc[cur])
+                    then return GET_STD_NODE(
+                        doc,
+                        path,
+                        cur + 1,
+                        level + 1,
+                        concat(res, doc[cur])
+                    )
+                    else
+                        if node_end(doc[cur])
+                        then
+                            if equal(level, 0)
+                            then return concat(res, doc[cur])
+                            else return GET_STD_NODE(
+                                doc,
+                                path,
+                                cur + 1,
+                                level - 1,
+                                concat(res, doc[cur])
+                            )
+                        else return GET_STD_NODE(
+                            doc,
+                            path,
+                            cur + 1,
+                            level,
+                            concat(res, doc[cur])
+                        )
+                else
+                    if equal("node " + path[0], doc[cur])
+                        if equal(size(path), 1)
+                        then return GET_STD_NODE(
+                            doc,
+                            tail(path),
+                            cur + 1,
+                            level,
+                            concat(res, doc[cur])
+                        )
+                        else return GET_STD_NODE(
+                            doc,
+                            tail(path),
+                            cur + 1,
+                            level,
+                            res
+                        )
+                    else return GET_STD_NODE(doc, path, cur + 1, level, res)
+        ```
+
+    - Getting a referenced attribute (`(doc, ref attr's path) -> ref attr`):
+
+        ```
+        // not empty(doc)
+        // not empty(orig_path)
+        // not empty(path)
+        // equal(cur, 0)
+        // equal(count, 0)
+        // equal(res, "")
+        GET_REF_ATTR (doc, orig_path, path, cur, count, res)
+            if greater(cur, length(doc))
+            then return NULL
+            else
+                if empty(path)
+                then
+                    if attr_value(doc[cur])
+                    then return GET_STD_ATTR(
+                        doc,
+                        orig_path,
+                        path,
+                        cur + 1,
+                        count,
+                        concat(res, NEWLINE, doc[cur])
+                    )
+                    else return res
+                else
+                    if equal(size(path), 1)
+                    then
+                        if equal("attr " + path[0], doc[cur])
+                        then
+                            if equal(count, 0)
+                            then return GET_STD_ATTR(
+                                doc,
+                                orig_path,
+                                orig_path,
+                                cur + 1,
+                                count + 1,
+                                res
+                            )
+                            else return GET_STD_ATTR(
+                                doc,
+                                orig_path,
+                                tail(path),
+                                cur + 1,
+                                count,
+                                concat(res, doc[cur])
+                            )
+                        else return GET_STD_ATTR(doc, path, cur + 1, res)
+                    else
+                        if equal("node " + path[0], doc[cur])
+                        then return GET_STD_ATTR(
+                            doc,
+                            orig_path,
+                            tail(path),
+                            cur + 1,
+                            count,
+                            res
+                        )
+                        else return GET_STD_ATTR(
+                            doc,
+                            orig_path,
+                            path,
+                            cur + 1,
+                            count,
+                            res
+                        )
+        ```
+
+    - Getting a referenced node (`(doc, ref node's path) -> ref node`):
+
+        ```
+        // not empty(doc)
+        // not empty(orig_path)
+        // not empty(path)
+        // equal(cur, 0)
+        // equal(level, 0)
+        // equal(count, 0)
+        // equal(res, "")
+        GET_REF_NODE (doc, orig_path, path, cur, level, count, res)
+            if greater(cur, length(doc))
+            then return NULL
+            else
+                if empty(path)
+                then
+                    if node_start(doc[cur])
+                    then return GET_STD_NODE(
+                        doc,
+                        orig_path,
+                        path,
+                        cur + 1,
+                        level + 1,
+                        count,
+                        concat(res, doc[cur])
+                    )
+                    else
+                        if node_end(doc[cur])
+                        then
+                            if equal(level, 0)
+                            then return concat(res, doc[cur])
+                            else return GET_STD_NODE(
+                                doc,
+                                orig_path,
+                                path,
+                                cur + 1,
+                                level - 1,
+                                count,
+                                concat(res, doc[cur])
+                            )
+                        else return GET_STD_NODE(
+                            doc,
+                            orig_path,
+                            path,
+                            cur + 1,
+                            level,
+                            count,
+                            concat(res, doc[cur])
+                        )
+                else
+                    if equal("node " + path[0], doc[cur])
+                    then
+                        if equal(size(path), 1)
+                        then
+                            if equal(count, 0)
+                            then return GET_STD_NODE(
+                                doc,
+                                orig_path,
+                                orig_path,
+                                cur + 1,
+                                level,
+                                count,
+                                res
+                            )
+                            else GET_STD_NODE(
+                                doc,
+                                orig_path,
+                                tail(path),
+                                cur + 1,
+                                level,
+                                count,
+                                res
+                            )
+                        else return GET_STD_NODE(
+                            doc,
+                            orig_path,
+                            tail(path),
+                            cur + 1,
+                            level,
+                            count,
+                            res
+                        )
+                    else return GET_STD_NODE(
+                        doc,
+                        orig_path,
+                        path,
+                        cur + 1,
+                        level,
+                        count,
+                        res
+                    )
+        ```
+
 ## Workflow
 
 1. Write some code.
